@@ -4,29 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Homepage</title>
+    <!--FontAwesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body>
     
     <div id="container">
+        <div id="edit-button">
+            <span><i class="fas fa-cog"></i></span>
+        </div>
         <div id="greeting">
-            <h1 id="specific-greeting">Good Evening, Christina!</h1>
+            <h1><span id="specific-greeting">Good Evening, </span><span id="name">Christina</span>!</h1>
         </div>
         <div id="time">
-
+            <h3>Right now, it is</h3>
+            <p id="current-time"></p>
         </div>
         <div id="weather">
-
+            <h3>Today's Weather</h3>
         </div>
         <div id="to-dos">
-
+            <h3>To-Do List</h3>
         </div>
         <div id="weekly-calendar">
-
+            <h3>Weekly Events</h3>
         </div>
 
     </div>
 
+    <!--jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--Moment-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="assets/scripts/script.js"></script>
 </body>
 </html>
