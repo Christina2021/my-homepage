@@ -28,6 +28,7 @@ body {
   background-image: url("../images/background-01.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: fixed;
 }
 
 #container{
@@ -61,7 +62,7 @@ body {
 }
 #greeting h1 {
     color: white;
-    font-size: 8rem;
+    font-size: 5rem;
     text-align: center;
 }
 
@@ -69,7 +70,7 @@ body {
 /*Time*/
 #time {
     position: absolute;
-    top: 10%;
+    top: 8%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -86,12 +87,37 @@ body {
 /*To-do*/
 
 /*Weekly Events*/
-
+#weekly-events {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90vw;
+    background-color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+#weekly-events h3 {
+    font-size: 1.5rem;
+}
+#weekly-events #save {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    transition: all 0.25s;
+}
+#weekly-events #save:hover {
+    color: blue;
+    cursor: pointer;
+}
 
 
 /*MEDIA QUERIES*/
-@media screen and (max-width: 1000px) {
+@media screen and (min-width: 1200px) {
     #greeting h1 {
-        font-size: 5rem;
+        font-size: 5.5rem;
     }
+
 }
