@@ -53,32 +53,43 @@ body {
 #greeting {
     /*center on page*/
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(0,0,0,0.8);
     border-radius: 10px;
     padding: 20px;
+    width: 80%;
 }
-#greeting h1 {
+#greeting h1, #greeting p {
     color: white;
     font-size: 5rem;
     text-align: center;
 }
+#greeting p {
+    font-size: 1rem;
+}
+#to-do-icon {
+    transition: all 0.25s;
+}
+#to-do-icon:hover {
+    color: #ABB4B7;
+    cursor: pointer;
+}
 
-
-/*Time*/
-#time {
+/*Time and Weather*/
+#time-and-weather {
     position: absolute;
-    top: 8%;
+    top: 5%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     background-color: rgba(255,255,255,0.5);
     padding: 20px;
     border-radius: 10px;
+    width: 80%;
 }
-#time h3, #time p {
+#time-and-weather h3, #time-and-weather p {
     font-size: 2rem;
 }
 
@@ -92,7 +103,7 @@ body {
     bottom: 5%;
     left: 50%;
     transform: translateX(-50%);
-    width: 90vw;
+    width: 90%;
     background-color: rgba(255,255,255,0.5);
     text-align: center;
     padding: 20px;
@@ -119,5 +130,9 @@ body {
     #greeting h1 {
         font-size: 5.5rem;
     }
-
+    #weekly-events {
+        bottom: 10%;
+        left: 50%;
+        width: 80%;
+    }
 }
