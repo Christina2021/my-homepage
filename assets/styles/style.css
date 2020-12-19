@@ -24,6 +24,11 @@ time, mark, audio, video {
 }
 
 /* My Styles */
+.hidden {
+    display: none;
+}
+
+
 body {
   background-image: url("../images/background-01.jpg");
   background-repeat: no-repeat;
