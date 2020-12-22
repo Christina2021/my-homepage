@@ -106,15 +106,35 @@ function getWeather(cityAPIName, myKey) {
     });
 }
 
-//To-do list
-//add to-do
-//edit to-do
-//checkmark to-do (and disable)
-//Remove to-do
+//Settings Button
+//Display User Information
+function pullUpUserInfo() {
+    let storeSavedInformation = JSON.parse(localStorage.getItem("homepageSavedInformation"));
+    $('#users-name').attr("placeholder",storeSavedInformation[0].name);
+    $('#users-city').attr("placeholder",storeSavedInformation[0].city);
+    $('#users-api').attr("placeholder",storeSavedInformation[0].apiKey);
+}
+//Update User Information
+function updateUserInfo(event) {
+    event.preventDefault();
+    let storeSavedInformation = JSON.parse(localStorage.getItem("homepageSavedInformation"));
 
+    if($('#users-name').val() != ""){
+        let newName = $('#users-name').val();
+        storeSavedInformation[0].name = newName;
+    }
+    if($('#users-city').val() != ""){
+        let newCity = $('#users-city').val();
+        storeSavedInformation[0].city = newCity;
+    }
+    if($('#users-api').val() != ""){
+        let newApi = $('#users-api').val();
+        storeSavedInformation[0].apiKey = newApi;
+    }
 
-//Edit button to update user information
-
+    localStorage.setItem("homepageSavedInformation",JSON.stringify(storeSavedInformation));
+    displaySavedInformation()
+}
 
 
 //Save Weekly to Local Storage
@@ -245,4 +265,5 @@ displaySavedInformation();
 
 //Events
 $("#save").click(saveWeekly);
-
+$("#update-user").click(updateUserInfo);
+$("#settings").click(pullUpUserInfo);

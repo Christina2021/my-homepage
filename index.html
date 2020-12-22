@@ -14,7 +14,7 @@
     
     <div id="container" class="hidden">
         <div id="edit-button">
-            <span><i class="fas fa-cog" data-bs-toggle="modal" data-bs-target="#userInformationModal"></i></span>
+            <span><i class="fas fa-cog" data-bs-toggle="modal" data-bs-target="#userInformationModal" id="settings" ></i></span>
         </div>
         <div class="modal fade" id="userInformationModal" tabindex="-1" aria-labelledby="userInformationModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -25,22 +25,22 @@
                 </div>
                 <div class="modal-body">
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Your Name</span>
-                        <input type="text" class="form-control">
+                        <span class="input-group-text">Your Name</span>
+                        <input type="text" class="form-control" id="users-name">
                     </div>
                     <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">Your City</span>
-                    <input type="text" class="form-control">
+                    <span class="input-group-text">Your City</span>
+                    <input type="text" class="form-control" id="users-city">
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Your OpenWeather API Key</span>
-                        <input type="text" class="form-control">
+                        <span class="input-group-text">OpenWeather API Key</span>
+                        <input type="text" class="form-control" id="users-api">
                     </div>
-                    <p>If you do not have an OpenWeather API key, please leave the above section blank.</p>
+                    <p>If you do not have an OpenWeather API key, please leave the above section blank.  You can sign up for an OpenWeather API key <a href="https://openweathermap.org/api" target="_blank">here</a>.</p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-primary" id="update-user">Save changes</button>
                 </div>
               </div>
             </div>
