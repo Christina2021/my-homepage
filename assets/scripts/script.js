@@ -4,6 +4,16 @@ let myWeather;
 let myKey;
 let cityName;
 
+let sundayText = $('#sunday-text');
+let mondayText = $('#monday-text');
+let tuesdayText = $('#tuesday-text');
+let wednesdayText = $('#wednesday-text');
+let thursdayText = $('#thursday-text');
+let fridayText = $('#friday-text');
+let saturdayText = $('#saturday-text');
+
+let weeklyNotes = [sundayText, mondayText, tuesdayText, wednesdayText, thursdayText, fridayText, saturdayText];
+
 //Edit button to update prompts
 //modal?
 
@@ -24,7 +34,7 @@ function currentTime() {
 };
 setInterval(currentTime, 1000);
 //Moment.js for greeting to change based on the time
-function updatePastPresentFuture(hour) {
+function updateGreeting(hour) {
     let lateEnd = moment().set('hour', 3).startOf('hour');
     let earlyEnd = moment().set('hour', 6).startOf('hour');
     let morningEnd = moment().set('hour', 12).startOf('hour');
@@ -66,7 +76,7 @@ function addDatesToWeekly(){
     $('#saturday-date').html(saturday);
 
 }
-updatePastPresentFuture(currentHour);
+updateGreeting(currentHour);
 addDatesToWeekly();
 
 //Weather - api stuff
@@ -113,16 +123,58 @@ function getWeather(cityAPIName, myKey) {
 //checkmark to-do (and disable)
 //Remove to-do
 
-//Weekly
-//modal? for event information
-//Add event
-//Edit event
-//Remove event
+//Save Weekly to Local Storage
+function saveWeekly() {
+ 
+    let storeSavedNotes = JSON.parse(localStorage.getItem("homepageSavedNotes"));    
+    if(!storeSavedNotes){
+        storeSavedNotes = [];
+    }
+
+    //Check values of each textarea
+    weeklyNotes.forEach(item => {
+        //If there is a new value to store
+        if (item.val() != ''){
+            //Reset confirmation of if value was saved
+            let stored = false;
+            //If there isn't anything currently in Local Storage, save this as the first item
+            if(!storeSavedNotes[0]){
+                storeSavedNotes.push({weekday: item.attr("id"), text: item.val()});
+            } else {
+                //If there are saved items, go through each item in local storage array
+                for (i = 0; i < storeSavedNotes.length; i++){
+                    //If local storage item already exists for the specific textarea, replace the item and confirm it has been stored
+                    if (storeSavedNotes[i].weekday === item.attr("id")){
+                        storeSavedNotes[i].text = item.val();
+                        stored = true;
+                    }
+                }
+                //If item was not stored per the above, add new object to Local Storage array
+                if (!stored){
+                    storeSavedNotes.push({weekday: item.attr("id"), text: item.val()});                 
+                }
+            }
+        } else {
+            //Remove item from local storage array if already exists but value is now empty
+            for (i = 0; i < storeSavedNotes.length; i++){
+                if (storeSavedNotes[i].weekday === item.attr("id")){
+                    storeSavedNotes.splice(i, 1);
+                }
+            }
+        }
+
+    })
+
+    //Save to Local Storage
+    localStorage.setItem("homepageSavedNotes",JSON.stringify(storeSavedNotes));
+
+}
+
 //if event passed, different color
 
 
 //Prompts for name, API key for openweathermap (change to modal later possibly)
-function FirstTimeUse() {
+function firstTimeUse() {
     let storeSavedInformation = [];
     let savedInformation;
 
@@ -157,11 +209,14 @@ function FirstTimeUse() {
 
 };
 
+
+//Local storage pulls to-do's and weekly
 function displaySavedInformation() {
     let storeSavedInformation = JSON.parse(localStorage.getItem("homepageSavedInformation"));
+    let storeSavedNotes = JSON.parse(localStorage.getItem("homepageSavedNotes"));
 
     if(!storeSavedInformation || !storeSavedInformation[0].name) {
-        FirstTimeUse();
+        firstTimeUse();
         $("#container").removeClass("hidden");
 
     } else {
@@ -182,11 +237,20 @@ function displaySavedInformation() {
 
         $("#container").removeClass("hidden");
     }
+
+    if(storeSavedNotes) {
+        weeklyNotes.forEach(item => {
+            for (i = 0; i < storeSavedNotes.length; i++){
+                if(storeSavedNotes[i].weekday === item.attr("id")){
+                    $("#"+item.attr("id")).val(storeSavedNotes[i].text);
+                }
+            }
+        })
+    };
 };
 
 displaySavedInformation();
 
 
+$("#save").click(saveWeekly);
 
-
-//Local storage pulls to-do's and weekly
