@@ -132,6 +132,15 @@ body {
     cursor: pointer;
     font-size: 1.5rem;
 }
+.day-past {
+    background-color: rgba(250,128,97,0.7);
+}
+.day-present {
+    background-color: rgba(152,245,160,0.7);
+}
+.day-future {
+    background-color: rgba(152,203,245,0.7);
+}
 
 
 /*MEDIA QUERIES*/

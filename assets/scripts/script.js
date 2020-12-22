@@ -59,25 +59,29 @@ function updateGreeting(hour) {
     
 };
 function addDatesToWeekly(){
-    let sunday = moment().day(0).format("ddd M/DD");
-    let monday = moment().day(1).format("ddd M/DD");
-    let tuesday = moment().day(2).format("ddd M/DD");
-    let wednesday = moment().day(3).format("ddd M/DD");
-    let thursday = moment().day(4).format("ddd M/DD");
-    let friday = moment().day(5).format("ddd M/DD");
-    let saturday = moment().day(6).format("ddd M/DD");
 
-    $('#sunday-date').html(sunday);
-    $('#monday-date').html(monday);
-    $('#tuesday-date').html(tuesday);
-    $('#wednesday-date').html(wednesday);
-    $('#thursday-date').html(thursday);
-    $('#friday-date').html(friday);
-    $('#saturday-date').html(saturday);
+    let currentDayOfWeek = moment().day();
+    let weekdays = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+
+    for(let i = 0; i < weekdays.length; i++){
+
+        //Add date to the calendar
+        let day = moment().day(i);
+        $("#" + weekdays[i] + "-date").html(day.format("ddd M/DD"));
+
+        //Add color based on past/present/future
+        if (currentDayOfWeek > i){
+            $("#" + weekdays[i] + "-text").addClass("day-past");
+        } else if (currentDayOfWeek === i){
+            $("#" + weekdays[i] + "-text").addClass("day-present");
+        } else if (currentDayOfWeek < i) {
+            $("#" + weekdays[i] + "-text").addClass("day-future");
+        }
+
+    }
 
 }
 updateGreeting(currentHour);
-addDatesToWeekly();
 
 //Weather - api stuff
 //<p id="weather-today">The weather today will be</p>
@@ -170,7 +174,6 @@ function saveWeekly() {
 
 }
 
-//if event passed, different color
 
 
 //Prompts for name, API key for openweathermap (change to modal later possibly)
