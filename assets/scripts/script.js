@@ -112,6 +112,11 @@ function getWeather(cityAPIName, myKey) {
 //checkmark to-do (and disable)
 //Remove to-do
 
+
+//Edit button to update user information
+
+
+
 //Save Weekly to Local Storage
 function saveWeekly() {
  
@@ -151,7 +156,6 @@ function saveWeekly() {
                 }
             }
         }
-
     })
 
     //Save to Local Storage

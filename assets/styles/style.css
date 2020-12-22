@@ -28,7 +28,7 @@ time, mark, audio, video {
     display: none;
 }
 
-
+/*MUST UPDATE POSITIONING OF DIVS*/
 body {
   background-image: url("../images/background-01.jpg");
   background-repeat: no-repeat;
@@ -52,6 +52,9 @@ body {
 #edit-button:hover {
     color: #ABB4B7;
     cursor: pointer;
+}
+.modal-title {
+    font-size: 1.5rem;
 }
 
 /*Greeting*/
