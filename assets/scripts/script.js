@@ -1,9 +1,13 @@
-//Any variables
+//Variables for User Info
 let myName = "";
 let myWeather;
 let myKey;
 let cityName;
 
+//Variables for current time
+let currentHour = moment().startOf('hour');
+
+//Variables for weekly notes
 let sundayText = $('#sunday-text');
 let mondayText = $('#monday-text');
 let tuesdayText = $('#tuesday-text');
@@ -11,17 +15,12 @@ let wednesdayText = $('#wednesday-text');
 let thursdayText = $('#thursday-text');
 let fridayText = $('#friday-text');
 let saturdayText = $('#saturday-text');
-
 let weeklyNotes = [sundayText, mondayText, tuesdayText, wednesdayText, thursdayText, fridayText, saturdayText];
 
-//Edit button to update prompts
-//modal?
 
+//Functions
 
-
-let currentHour = moment().startOf('hour');
-
-//Moment.js for time (setInterval used to be in real-time)
+//Get current time; setInterval will be used to constantly update current time
 function currentTime() {
     $('#current-time').html(moment().format("[~ ]dddd LL h[:]mm[:]ss A[ ~]"));
 
@@ -32,8 +31,8 @@ function currentTime() {
         updateGreeting(currentHour);
     };
 };
-setInterval(currentTime, 1000);
-//Moment.js for greeting to change based on the time
+
+//Greeting will be changed based on the current hour
 function updateGreeting(hour) {
     let lateEnd = moment().set('hour', 3).startOf('hour');
     let earlyEnd = moment().set('hour', 6).startOf('hour');
@@ -54,10 +53,10 @@ function updateGreeting(hour) {
     } ;
 
     //Add for weekly dates
-    addDatesToWeekly();
+    addDatesToWeekly();    
+}
 
-    
-};
+//Dates will be updated for the current week with background color
 function addDatesToWeekly(){
 
     let currentDayOfWeek = moment().day();
@@ -76,25 +75,16 @@ function addDatesToWeekly(){
             $("#" + weekdays[i] + "-text").addClass("day-present");
         } else if (currentDayOfWeek < i) {
             $("#" + weekdays[i] + "-text").addClass("day-future");
-        }
-
+        };
     }
-
 }
-updateGreeting(currentHour);
 
-//Weather - api stuff
-//<p id="weather-today">The weather today will be</p>
 
-/*
-let myKey = prompt("Please enter in your API key for O");
-let cityAPIName = prompt("What city do you live in?");
-*/
-
+//If weather API is given, will display the current weather for the day
 function getWeather(cityAPIName, myKey) {
     let currentURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityAPIName + "&units=imperial&appid=" + myKey;
 
-    //First API call for lat/lon of city to use for second API call
+    //API call to get the weather
     $.ajax({
         url: currentURL,
         method: "GET",
@@ -111,15 +101,10 @@ function getWeather(cityAPIName, myKey) {
         let currentLow = response.main.temp_min;        
         let currentWeatherCondition = response.weather[0].description;
         
+        //Add weather information to homepage
         $('#weather-today').html(`The current weather in ${city} is ${currentTemp}&#8457; (${currentWeatherCondition}), with a high of ${currentHigh}&#8457; and low of ${currentLow}&#8457;!`);
     });
 }
-
-
-
-
-
-
 
 //To-do list
 //add to-do
@@ -174,9 +159,7 @@ function saveWeekly() {
 
 }
 
-
-
-//Prompts for name, API key for openweathermap (change to modal later possibly)
+//FIRST TIME USE: Prompts for name, API key for openweathermap (change to modal later possibly)
 function firstTimeUse() {
     let storeSavedInformation = [];
     let savedInformation;
@@ -212,8 +195,7 @@ function firstTimeUse() {
 
 };
 
-
-//Local storage pulls to-do's and weekly
+//Local storage pulls information to display
 function displaySavedInformation() {
     let storeSavedInformation = JSON.parse(localStorage.getItem("homepageSavedInformation"));
     let storeSavedNotes = JSON.parse(localStorage.getItem("homepageSavedNotes"));
@@ -252,8 +234,11 @@ function displaySavedInformation() {
     };
 };
 
+//Upon opening page
+setInterval(currentTime, 1000);
+updateGreeting(currentHour);
 displaySavedInformation();
 
-
+//Events
 $("#save").click(saveWeekly);
 
