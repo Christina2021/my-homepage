@@ -29,6 +29,8 @@ function currentTime() {
         //Update currentHour if changed;
         currentHour = moment().startOf('hour');
         updateGreeting(currentHour);
+        //Updates information (mainly for weather) every hour
+        displaySavedInformation();
     };
 };
 
@@ -110,9 +112,18 @@ function getWeather(cityAPIName, myKey) {
 //Display User Information
 function pullUpUserInfo() {
     let storeSavedInformation = JSON.parse(localStorage.getItem("homepageSavedInformation"));
+
     $('#users-name').attr("placeholder",storeSavedInformation[0].name);
+
     $('#users-city').attr("placeholder",storeSavedInformation[0].city);
+    if(!storeSavedInformation[0].city){
+        $('#users-city').attr("placeholder","Enter City Name");        
+    }
+
     $('#users-api').attr("placeholder",storeSavedInformation[0].apiKey);
+    if(!storeSavedInformation[0].apiKey){
+        $('#users-api').attr("placeholder","Enter API Key");        
+    }    
 }
 //Update User Information
 function updateUserInfo(event) {
@@ -130,6 +141,7 @@ function updateUserInfo(event) {
     if($('#users-api').val() != ""){
         let newApi = $('#users-api').val();
         storeSavedInformation[0].apiKey = newApi;
+        storeSavedInformation[0].weather = true;        
     }
 
     localStorage.setItem("homepageSavedInformation",JSON.stringify(storeSavedInformation));
