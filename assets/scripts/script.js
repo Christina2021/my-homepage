@@ -146,6 +146,11 @@ function updateUserInfo(event) {
 
     localStorage.setItem("homepageSavedInformation",JSON.stringify(storeSavedInformation));
     displaySavedInformation()
+
+    $('#users-name').val("");
+    $('#users-city').val("");
+    $('#users-api').val("");
+    pullUpUserInfo();
 }
 
 
