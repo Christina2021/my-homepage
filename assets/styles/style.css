@@ -141,10 +141,5 @@ body {
     #greeting h1 {
         font-size: 5.5rem;
     }
-    #weekly-events {
-        bottom: 10%;
-        left: 50%;
-        width: 80%;
-    }
 }
 
