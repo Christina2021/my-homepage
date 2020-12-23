@@ -44,6 +44,12 @@ body {
     align-items: center;
 }
 
+/*Start Form*/
+.card-header {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
 /*Edit Button*/
 #edit-button {
     position: absolute;

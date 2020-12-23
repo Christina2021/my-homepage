@@ -1,4 +1,5 @@
 //Variables for User Info
+let startingModal = $('#startingModal');
 let myName = "";
 let myWeather;
 let myKey;
@@ -201,26 +202,26 @@ function saveWeekly() {
 }
 
 //FIRST TIME USE: Prompts for name, API key for openweathermap (change to modal later possibly)
-function firstTimeUse() {
+function firstTimeUse(event) {
+
+    event.preventDefault;
+
+    let myName = $('#initial-users-name').val();
+    let myCity = $('#initial-users-city').val();
+    let myKey = $('#initial-users-api').val();
+    let myWeather = false;
+
+    if(myKey){
+        myWeather = true;
+    } else {
+        myKey = false;
+    };
+    
+    //Local Storage
     let storeSavedInformation = [];
     let savedInformation;
 
-    alert("Welcome! Please enter in some information so that your homepage may display the necessary information:");
-    myName = prompt("Please enter in your name:");
-    myWeather = confirm("Would you like to add weather data to your homepage (please note that you will need an API key for OpenWeather to utilize this feature - you may sign up for a key at: https://openweathermap.org/)");
-    if (myWeather) {
-        myKey = prompt("Please enter in your OpenWeather API key (this will be saved to your local storage):");
-        cityName = prompt("Please enter in the name of the city that you would like the weather data for:");
-
-        let cityNameRevised = cityName.trim().toLowerCase().split(' ').join('+');
-        getWeather(cityNameRevised, myKey);
-    } else {
-        myKey = false;
-        cityName = false;
-    }
-
-    //Local Storage
-    savedInformation = {name: myName, weather: myWeather, apiKey: myKey, city: cityName};
+    savedInformation = {name: myName, weather: myWeather, apiKey: myKey, city: myCity};
     storeSavedInformation = JSON.parse(localStorage.getItem("homepageSavedInformation"));
 
     //Saves object
@@ -229,12 +230,11 @@ function firstTimeUse() {
 
     //Saves to Local Storage
     localStorage.setItem("homepageSavedInformation",JSON.stringify(storeSavedInformation));
-    
+  
 
-    //Set name field in html
-    $('#name').html(myName);
+    displaySavedInformation()
+}
 
-};
 
 //Local storage pulls information to display
 function displaySavedInformation() {
@@ -242,11 +242,11 @@ function displaySavedInformation() {
     let storeSavedNotes = JSON.parse(localStorage.getItem("homepageSavedNotes"));
 
     if(!storeSavedInformation || !storeSavedInformation[0].name) {
-        firstTimeUse();
-        $("#container").removeClass("hidden");
-
+        $("#starter").removeClass("hidden");
+        return;
     } else {
-
+        $("#starter").addClass("hidden");
+        $("#main-page").removeClass("hidden");
         myName = storeSavedInformation[0].name;
         myWeather = storeSavedInformation[0].weather;
         myKey = storeSavedInformation[0].apiKey;
@@ -261,7 +261,7 @@ function displaySavedInformation() {
         $('#name').html(myName);
 
 
-        $("#container").removeClass("hidden");
+        //$("#container").removeClass("hidden");
     }
 
     if(storeSavedNotes) {
@@ -284,3 +284,6 @@ displaySavedInformation();
 $("#save").click(saveWeekly);
 $("#update-user").click(updateUserInfo);
 $("#settings").click(pullUpUserInfo);
+$("#lets-go").click(firstTimeUse);
+
+console.log($("#lets-go"))

@@ -12,106 +12,136 @@
 </head>
 <body>
     
-    <div id="container" class="hidden">
-        <div id="edit-button">
-            <span><i class="fas fa-cog" data-bs-toggle="modal" data-bs-target="#userInformationModal" id="settings" ></i></span>
-        </div>
-        <div class="modal fade" id="userInformationModal" tabindex="-1" aria-labelledby="userInformationModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <p class="modal-title" id="userInformationModalLabel">Update User Information</p>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Your Name</span>
-                        <input type="text" class="form-control" id="users-name">
-                    </div>
-                    <div class="input-group mb-3">
-                    <span class="input-group-text">Your City</span>
-                    <input type="text" class="form-control" id="users-city">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">OpenWeather API Key</span>
-                        <input type="text" class="form-control" id="users-api">
-                    </div>
-                    <p>If you do not have an OpenWeather API key, please leave the above section blank.  You can sign up for an OpenWeather API key <a href="https://openweathermap.org/api" target="_blank">here</a>.</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" id="update-user">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-        <div id="time-and-weather" class="my-5">
-            <p class= "mb-2" id="current-time"></p>
-            <p id="weather-today"></p>
-        </div>
-
-        <div id="greeting">
-            <h1><span id="specific-greeting"></span><span id="name"></span>!</h1>
-            <!-- <p class="mt-3">Check your to-do list! <i class="far fa-clipboard" id="to-do-icon" id="to-dos" data-bs-toggle="modal" data-bs-target="#toDoModal"></i></p> -->
-        </div>
-        <!-- <div class="modal fade" id="toDoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="toDoModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="toDoModalLabel">My To-Do List</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-        <div id="weekly-events" class="my-5">
-            <h3 class="mb-3">Weekly Events and To-Do's</h3>
-            <span id="save"><i class="fas fa-save"></i></span>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3 col-md">
-                        <div class="row date"><span class="p-0" id="sunday-date"></span></div>
-                        <div class="row"><textarea name="" id="sunday-text" cols="30" rows="12"></textarea></div>
-                    </div>
-                    <div class="col-sm-3 col-md">
-                        <div class="row date"><span class="p-0" id="monday-date"></span></div>
-                        <div class="row"><textarea name="" id="monday-text" cols="30" rows="12"></textarea></div>
-                    </div>
-                    <div class="col-sm-3 col-md">
-                        <div class="row date"><span class="p-0" id="tuesday-date"></span></div>
-                        <div class="row"><textarea name="" id="tuesday-text" cols="30" rows="12"></textarea></div>
-                    </div>
-                    <div class="col-sm-3 col-md">
-                        <div class="row date"><span class="p-0" id="wednesday-date"></span></div>
-                        <div class="row"><textarea name="" id="wednesday-text" cols="30" rows="12"></textarea></div>
-                    </div>
-                    <div class="col-sm-3 col-md">
-                        <div class="row date"><span class="p-0" id="thursday-date"></span></div>
-                        <div class="row"><textarea name="" id="thursday-text" cols="30" rows="12"></textarea></div>
-                    </div>
-                    <div class="col-sm-3 col-md">
-                        <div class="row date"><span class="p-0" id="friday-date"></span></div>
-                        <div class="row"><textarea name="" id="friday-text" cols="30" rows="12"></textarea></div>
-                    </div>
-                    <div class="col-sm-3 col-md">
-                        <div class="row date"><span class="p-0"id="saturday-date"></span></div>
-                        <div class="row"><textarea name="" id="saturday-text" cols="30" rows="12"></textarea></div>
+    <div class="container mt-5 hidden" id="starter">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="card">
+                    <h5 class="card-header text-center">Welcome!</h5>
+                    <div class="card-body">
+                        <p class="mb-3">Please enter in the below information for a personalized experience on your homepage!</p>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Your Name</span>
+                            <input type="text" class="form-control" id="initial-users-name">
+                        </div>
+                        <div class="input-group mb-3">
+                        <span class="input-group-text">Your City</span>
+                        <input type="text" class="form-control" id="initial-users-city">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">OpenWeather API Key*</span>
+                            <input type="text" class="form-control" id="initial-users-api">
+                        </div>
+                        <p class="mb-3">*The OpenWeather API Key will be needed to display weather information.  If you do not have an OpenWeather API key, please leave the above section blank.  You can sign up for an OpenWeather API key <a href="https://openweathermap.org/api" target="_blank">here</a>.</p>
+                        <a class="btn btn-primary" id="lets-go">Let's Go!</a>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
+
+    <div id="main-page" class="hidden">
+        <div id="container">
+            <div id="edit-button">
+                <span><i class="fas fa-cog" data-bs-toggle="modal" data-bs-target="#userInformationModal" id="settings" ></i></span>
+            </div>
+            <div class="modal fade" id="userInformationModal" tabindex="-1" aria-labelledby="userInformationModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <p class="modal-title" id="userInformationModalLabel">Update User Information</p>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Your Name</span>
+                            <input type="text" class="form-control" id="users-name">
+                        </div>
+                        <div class="input-group mb-3">
+                        <span class="input-group-text">Your City</span>
+                        <input type="text" class="form-control" id="users-city">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">OpenWeather API Key</span>
+                            <input type="text" class="form-control" id="users-api">
+                        </div>
+                        <p>If you do not have an OpenWeather API key, please leave the above section blank.  You can sign up for an OpenWeather API key <a href="https://openweathermap.org/api" target="_blank">here</a>.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" id="update-user">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+    
+    
+            <div id="time-and-weather" class="my-5">
+                <p class= "mb-2" id="current-time"></p>
+                <p id="weather-today"></p>
+            </div>
+    
+            <div id="greeting">
+                <h1><span id="specific-greeting"></span><span id="name"></span>!</h1>
+                <!-- <p class="mt-3">Check your to-do list! <i class="far fa-clipboard" id="to-do-icon" id="to-dos" data-bs-toggle="modal" data-bs-target="#toDoModal"></i></p> -->
+            </div>
+            <!-- <div class="modal fade" id="toDoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="toDoModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="toDoModalLabel">My To-Do List</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      ...
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+    
+            <div id="weekly-events" class="my-5">
+                <h3 class="mb-3">Weekly Events and To-Do's</h3>
+                <span id="save"><i class="fas fa-save"></i></span>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3 col-md">
+                            <div class="row date"><span class="p-0" id="sunday-date"></span></div>
+                            <div class="row"><textarea name="" id="sunday-text" cols="30" rows="12"></textarea></div>
+                        </div>
+                        <div class="col-sm-3 col-md">
+                            <div class="row date"><span class="p-0" id="monday-date"></span></div>
+                            <div class="row"><textarea name="" id="monday-text" cols="30" rows="12"></textarea></div>
+                        </div>
+                        <div class="col-sm-3 col-md">
+                            <div class="row date"><span class="p-0" id="tuesday-date"></span></div>
+                            <div class="row"><textarea name="" id="tuesday-text" cols="30" rows="12"></textarea></div>
+                        </div>
+                        <div class="col-sm-3 col-md">
+                            <div class="row date"><span class="p-0" id="wednesday-date"></span></div>
+                            <div class="row"><textarea name="" id="wednesday-text" cols="30" rows="12"></textarea></div>
+                        </div>
+                        <div class="col-sm-3 col-md">
+                            <div class="row date"><span class="p-0" id="thursday-date"></span></div>
+                            <div class="row"><textarea name="" id="thursday-text" cols="30" rows="12"></textarea></div>
+                        </div>
+                        <div class="col-sm-3 col-md">
+                            <div class="row date"><span class="p-0" id="friday-date"></span></div>
+                            <div class="row"><textarea name="" id="friday-text" cols="30" rows="12"></textarea></div>
+                        </div>
+                        <div class="col-sm-3 col-md">
+                            <div class="row date"><span class="p-0"id="saturday-date"></span></div>
+                            <div class="row"><textarea name="" id="saturday-text" cols="30" rows="12"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
 
     <!--jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
