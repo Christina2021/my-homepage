@@ -5,6 +5,9 @@ let myWeather;
 let myKey;
 let cityName;
 
+//Background Images
+let backgroundImages = ["./assets/images/background-01.jpg", "./assets/images/background-02.jpg", "./assets/images/background-03.jpg", "./assets/images/background-04.jpg"]
+
 //Variables for current time
 let currentHour = moment().startOf('hour');
 
@@ -20,6 +23,19 @@ let weeklyNotes = [sundayText, mondayText, tuesdayText, wednesdayText, thursdayT
 
 
 //Functions
+
+//Add random background image
+function addBackgroundImage() {
+    let bodyBackground = $("body");
+
+    let randomNumber = Math.floor(Math.random() * (backgroundImages.length));
+    console.log(randomNumber);
+    let randomImage = backgroundImages[randomNumber];
+    console.log(randomImage);
+    console.log(`url(${randomImage})`);
+
+    bodyBackground.css("background-image", `url(${randomImage})`);
+}
 
 //Get current time; setInterval will be used to constantly update current time
 function currentTime() {
@@ -276,6 +292,7 @@ function displaySavedInformation() {
 };
 
 //Upon opening page
+addBackgroundImage();
 setInterval(currentTime, 1000);
 updateGreeting(currentHour);
 displaySavedInformation();

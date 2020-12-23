@@ -92,7 +92,7 @@ body {
 /*Time and Weather*/
 #time-and-weather {
     text-align: center;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.7);
     padding: 20px;
     border-radius: 10px;
     width: 80%;
@@ -108,7 +108,7 @@ body {
 /*Weekly Events*/
 #weekly-events {
     position: relative;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.7);
     text-align: center;
     padding: 20px;
     border-radius: 10px;
