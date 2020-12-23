@@ -285,5 +285,3 @@ $("#save").click(saveWeekly);
 $("#update-user").click(updateUserInfo);
 $("#settings").click(pullUpUserInfo);
 $("#lets-go").click(firstTimeUse);
-
-console.log($("#lets-go"))
