@@ -82,13 +82,9 @@ body {
 #greeting p {
     font-size: 1rem;
 }
-#to-do-icon {
-    transition: all 0.25s;
-}
-#to-do-icon:hover {
-    color: #ABB4B7;
-    cursor: pointer;
-    font-size: 1.5rem;
+#to-do-modal-note {
+    font-size: 1rem;
+    font-style: italic;
 }
 
 

@@ -82,13 +82,13 @@
     
             <div id="greeting">
                 <h1><span id="specific-greeting"></span><span id="name"></span>!</h1>
-                <!-- <p class="mt-3">Check your to-do list! <i class="far fa-clipboard" id="to-do-icon" id="to-dos" data-bs-toggle="modal" data-bs-target="#toDoModal"></i></p> -->
+                <p class="mt-3">Check your to-do list: <button type="button" class="btn btn-outline-secondary ms-1" id="to-dos" data-bs-toggle="modal" data-bs-target="#toDoModal"><i class="far fa-clipboard" ></i></button></p>
 
                 <div class="modal fade" id="toDoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="toDoModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h5 class="modal-title" id="toDoModalLabel">My To-Do List</h5>
+                        <h5 class="modal-title text-center" id="toDoModalLabel">My To-Do List! <br><span id="to-do-modal-note">Please note that you must click on the "Save Changes" button when you are finished modifying your list.</span></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -115,7 +115,7 @@
             </div>
     
             <div id="weekly-events" class="my-5">
-                <h3 class="mb-3">Weekly Events and To-Do's</h3>
+                <h3 class="mb-3">Weekly Events</h3>
                 <span id="save-weekly"><i class="fas fa-save"></i></span>
                 <div class="container">
                     <div class="row">

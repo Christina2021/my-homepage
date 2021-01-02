@@ -192,7 +192,23 @@ function removeToDo(event) {
 }
 
 //Save to-do list to Local Storage
-//may need: let numberItem = $('#to-do-list li').length;
+function saveToDos() {
+
+    storeSavedToDos = [];
+    
+    let listItems = $('#to-do-list li')
+
+    for (let i = 0; i < listItems.length; i++){
+        storeSavedToDos.push(listItems[i].innerHTML);
+    };
+
+    console.log(storeSavedToDos)
+
+    //Save to Local Storage
+    localStorage.setItem("homepageSavedToDos",JSON.stringify(storeSavedToDos));
+
+}
+
 
 
 //Save Weekly to Local Storage
@@ -306,14 +322,35 @@ function displaySavedInformation() {
 
     if(storeSavedNotes) {
         weeklyNotes.forEach(item => {
-            for (i = 0; i < storeSavedNotes.length; i++){
+            for (let i = 0; i < storeSavedNotes.length; i++){
                 if(storeSavedNotes[i].weekday === item.attr("id")){
                     $("#"+item.attr("id")).val(storeSavedNotes[i].text);
                 }
             }
         })
     };
-};
+
+
+}
+
+//Pulls from Local Storage to display to-do list every time the user clicks on the icon to check their to-do list
+function displaySavedToDos() {
+    let currentItems = $('#to-do-list');
+    currentItems.empty();
+
+    let storeSavedToDos = JSON.parse(localStorage.getItem("homepageSavedToDos"));
+
+    if(storeSavedToDos) {
+        //Add to-dos to list
+        for (let i = 0; i < storeSavedToDos.length; i++) {
+            //Create html for item
+            let newToDoListItem = $('<li class="mb-2">');
+            newToDoListItem.html(`${storeSavedToDos[i]}`);
+            //Append to list
+            $('#to-do-list').append(newToDoListItem);
+        }
+    }
+}
 
 //Upon opening page
 addBackgroundImage();
@@ -325,6 +362,8 @@ displaySavedInformation();
 $("#to-do-add-button").click(addToDo);
 //Using .on("click") for event handler for dynamically added button
 $("#to-do-list").on("click", ".remove-to-do-button", removeToDo);
+$('#to-do-save-button').click(saveToDos);
+$('#to-dos').click(displaySavedToDos)
 $("#save-weekly").click(saveWeekly);
 $("#update-user").click(updateUserInfo);
 $("#settings").click(pullUpUserInfo);
