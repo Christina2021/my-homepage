@@ -175,8 +175,6 @@ function addToDo() {
 
     //Create html for item
     let newToDoListItem = $('<li class="mb-2">');
-    let numberItem = $('#to-do-list li').length;
-    newToDoListItem.attr('id', `to-do-item-number-${numberItem}`);
     newToDoListItem.html(`${newToDoItem} <button type="button" class="btn btn-outline-danger btn-sm ms-3 remove-to-do-button"> Remove </button>`);
     //Append to list
     $('#to-do-list').append(newToDoListItem);
@@ -187,12 +185,14 @@ function addToDo() {
 
 //Removes to-do item from to-do list
 function removeToDo(event) {
-    let specificListItem = ($(event.target).parent());
+    
+    let specificListItem = $(event.target).parent();
+    specificListItem.remove();
 
-    console.log(specificListItem);
 }
 
 //Save to-do list to Local Storage
+//may need: let numberItem = $('#to-do-list li').length;
 
 
 //Save Weekly to Local Storage
