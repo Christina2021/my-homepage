@@ -29,10 +29,7 @@ function addBackgroundImage() {
     let bodyBackground = $("body");
 
     let randomNumber = Math.floor(Math.random() * (backgroundImages.length));
-    console.log(randomNumber);
     let randomImage = backgroundImages[randomNumber];
-    console.log(randomImage);
-    console.log(`url(${randomImage})`);
 
     bodyBackground.css("background-image", `url(${randomImage})`);
 }
@@ -142,6 +139,7 @@ function pullUpUserInfo() {
         $('#users-api').attr("placeholder","Enter API Key");        
     }    
 }
+
 //Update User Information
 function updateUserInfo(event) {
     event.preventDefault();
@@ -169,6 +167,32 @@ function updateUserInfo(event) {
     $('#users-api').val("");
     pullUpUserInfo();
 }
+
+//Adds to-do item to to-do list
+function addToDo() {
+
+    let newToDoItem = $('#to-do-add-item').val();
+
+    //Create html for item
+    let newToDoListItem = $('<li class="mb-2">');
+    let numberItem = $('#to-do-list li').length;
+    newToDoListItem.attr('id', `to-do-item-number-${numberItem}`);
+    newToDoListItem.html(`${newToDoItem} <button type="button" class="btn btn-outline-danger btn-sm ms-3 remove-to-do-button"> Remove </button>`);
+    //Append to list
+    $('#to-do-list').append(newToDoListItem);
+    //Clear value in input
+    $('#to-do-add-item').val("");
+
+}
+
+//Removes to-do item from to-do list
+function removeToDo(event) {
+    let specificListItem = ($(event.target).parent());
+
+    console.log(specificListItem);
+}
+
+//Save to-do list to Local Storage
 
 
 //Save Weekly to Local Storage
@@ -298,7 +322,10 @@ updateGreeting(currentHour);
 displaySavedInformation();
 
 //Events
-$("#save").click(saveWeekly);
+$("#to-do-add-button").click(addToDo);
+//Using .on("click") for event handler for dynamically added button
+$("#to-do-list").on("click", ".remove-to-do-button", removeToDo);
+$("#save-weekly").click(saveWeekly);
 $("#update-user").click(updateUserInfo);
 $("#settings").click(pullUpUserInfo);
 $("#lets-go").click(firstTimeUse);
