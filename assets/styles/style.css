@@ -34,6 +34,7 @@ body {
   background-size: cover;
   background-position: fixed;
   background-attachment: fixed;
+  font-family: 'Open Sans', sans-serif;
   height: 100vh;
 }
 
@@ -74,6 +75,9 @@ body {
     padding: 20px;
     width: 80%;
 }
+#greeting h1 {
+    font-family: 'Redressed', cursive;
+}
 #greeting h1, #greeting p {
     color: white;
     font-size: 5.5rem;
@@ -88,8 +92,14 @@ body {
 }
 
 
-
 /*Time and Weather*/
+#current-time {
+    font-family: 'Redressed', cursive;
+    font-size: 1.75rem;
+}
+#weather-today {
+    font-size: 1.25rem;
+}
 #time-and-weather {
     text-align: center;
     background-color: rgba(255,255,255,0.7);
@@ -97,9 +107,7 @@ body {
     border-radius: 10px;
     width: 80%;
 }
-#time-and-weather h3, #time-and-weather p {
-    font-size: 1.75rem;
-}
+
 
 /*Weekly Events*/
 #weekly-events {
@@ -111,6 +119,7 @@ body {
     font-weight: bold;
 }
 #weekly-events h3 {
+    font-family: 'Redressed', cursive;
     font-size: 1.5rem;
 }
 #weekly-events .date{
