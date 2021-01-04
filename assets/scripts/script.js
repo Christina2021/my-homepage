@@ -36,7 +36,7 @@ function addBackgroundImage() {
 
 //Get current time; setInterval will be used to constantly update current time
 function currentTime() {
-    $('#current-time').html(moment().format("[~ ]dddd LL h[:]mm[:]ss A[ ~]"));
+    $('#current-time').html(`${moment().format("[~ ]dddd LL[ ~]")}<br>${moment().format("h[:]mm[:]ss a")}`);
 
     //Update past/present/future colors if start of new hour
     if(moment().startOf('second').isSame(moment().startOf('hour'))){
