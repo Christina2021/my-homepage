@@ -116,11 +116,13 @@ body {
     text-align: center;
     padding: 20px;
     border-radius: 10px;
-    font-weight: bold;
 }
 #weekly-events h3 {
     font-family: 'Redressed', cursive;
     font-size: 1.75rem;
+}
+#weekly-events .row {
+    font-weight: bold;
 }
 #weekly-events .date{
     font-size: 1rem;
