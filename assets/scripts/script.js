@@ -6,7 +6,9 @@ let myKey;
 let cityName;
 
 //Background Images
-let backgroundImages = ["./assets/images/background-01.jpg", "./assets/images/background-02.jpg", "./assets/images/background-03.jpg", "./assets/images/background-04.jpg"]
+let morningBackgroundImages = ["./assets/images/background-m1.jpg", "./assets/images/background-m2.jpg", "./assets/images/background-m3.jpg"];
+let afternoonBackgroundImages = ["./assets/images/background-a1.jpg", "./assets/images/background-a2.jpg", "./assets/images/background-a3.jpg"];
+let eveningBackgroundImages = ["./assets/images/background-e1.jpg", "./assets/images/background-e2.jpg", "./assets/images/background-e3.jpg"];
 
 //Variables for current time
 let currentHour = moment().startOf('hour');
@@ -25,11 +27,11 @@ let weeklyNotes = [sundayText, mondayText, tuesdayText, wednesdayText, thursdayT
 //Functions
 
 //Add random background image
-function addBackgroundImage() {
+function addBackgroundImage(backgroundImageArray) {
     let bodyBackground = $("body");
 
-    let randomNumber = Math.floor(Math.random() * (backgroundImages.length));
-    let randomImage = backgroundImages[randomNumber];
+    let randomNumber = Math.floor(Math.random() * (backgroundImageArray.length));
+    let randomImage = backgroundImageArray[randomNumber];
 
     bodyBackground.css("background-image", `url(${randomImage})`);
 }
@@ -57,16 +59,21 @@ function updateGreeting(hour) {
     let eveningEnd = moment().set('hour', 24).startOf('hour');
     
     if (hour.isBefore(lateEnd)){
-        $('#specific-greeting').html(`It's late, `)
+        $('#specific-greeting').html(`It's late, `);
+        addBackgroundImage(eveningBackgroundImages);
     } else if (hour.isBefore(earlyEnd)){
-        $('#specific-greeting').html(`It's early, `)
+        $('#specific-greeting').html(`It's early, `);
+        addBackgroundImage(morningBackgroundImages);
     } else if (hour.isBefore(morningEnd)){
-        $('#specific-greeting').html(`Good Morning, `)
+        $('#specific-greeting').html(`Good Morning, `);
+        addBackgroundImage(morningBackgroundImages);
     } else if (hour.isBefore(afternoonEnd)){
-        $('#specific-greeting').html(`Good Afternoon, `)
+        $('#specific-greeting').html(`Good Afternoon, `);
+        addBackgroundImage(afternoonBackgroundImages);
     } else if (hour.isBefore(eveningEnd)){
-        $('#specific-greeting').html(`Good Evening, `)
-    } ;
+        $('#specific-greeting').html(`Good Evening, `);
+        addBackgroundImage(eveningBackgroundImages);
+    };
 
     //Add for weekly dates
     addDatesToWeekly();    
@@ -353,7 +360,6 @@ function displaySavedToDos() {
 }
 
 //Upon opening page
-addBackgroundImage();
 setInterval(currentTime, 1000);
 updateGreeting(currentHour);
 displaySavedInformation();
