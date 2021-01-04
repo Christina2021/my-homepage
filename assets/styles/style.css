@@ -29,7 +29,6 @@ time, mark, audio, video {
 }
 
 body {
-  background-image: url("../images/background-m1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: fixed;
