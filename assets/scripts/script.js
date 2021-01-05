@@ -160,10 +160,13 @@ function updateUserInfo(event) {
         let newCity = $('#users-city').val();
         storeSavedInformation[0].city = newCity;
     }
-    if($('#users-api').val() != ""){
+    if($('#users-api').val() != "" && $('#users-api').val() != "clear"){
         let newApi = $('#users-api').val();
         storeSavedInformation[0].apiKey = newApi;
         storeSavedInformation[0].weather = true;        
+    } else if ($('#users-api').val() === "clear"){
+        storeSavedInformation[0].apiKey = "";
+        storeSavedInformation[0].weather = false;    
     }
 
     localStorage.setItem("homepageSavedInformation",JSON.stringify(storeSavedInformation));
