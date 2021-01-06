@@ -321,6 +321,8 @@ function displaySavedInformation() {
         if (myWeather) {
             let cityNameRevised = cityName.trim().toLowerCase().split(' ').join('+');
             getWeather(cityNameRevised, myKey);
+        } else {
+            $('#weather-today').empty();
         }
     
         //Set name field in html
