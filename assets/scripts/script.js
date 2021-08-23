@@ -212,7 +212,7 @@ function saveToDos() {
         storeSavedToDos.push(listItems[i].innerHTML);
     };
 
-    console.log(storeSavedToDos)
+    // console.log(storeSavedToDos)
 
     //Save to Local Storage
     localStorage.setItem("homepageSavedToDos",JSON.stringify(storeSavedToDos));
@@ -264,6 +264,23 @@ function saveWeekly() {
 
     //Save to Local Storage
     localStorage.setItem("homepageSavedNotes",JSON.stringify(storeSavedNotes));
+
+}
+
+//Clear weekly notes
+async function clearWeekly() {
+
+    let storedSavedNotes = JSON.parse(localStorage.getItem("homepageSavedNotes")); 
+    if(!storedSavedNotes){
+        storedSavedNotes = [];
+    }
+
+    localStorage.removeItem("homepageSavedNotes");
+
+
+    weeklyNotes.forEach(item => {
+        $("#"+item.attr("id")).val("");
+    })
 
 }
 
@@ -376,6 +393,7 @@ $("#to-do-list").on("click", ".remove-to-do-button", removeToDo);
 $('#to-do-save-button').click(saveToDos);
 $('#to-dos').click(displaySavedToDos)
 $("#save-weekly").click(saveWeekly);
+$('#clear-weekly-confirm').click(clearWeekly);
 $("#update-user").click(updateUserInfo);
 $("#settings").click(pullUpUserInfo);
 $("#lets-go").click(firstTimeUse);
