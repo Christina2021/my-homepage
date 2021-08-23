@@ -191,6 +191,7 @@ function addToDo() {
     //Clear value in input
     $('#to-do-add-item').val("");
 
+    saveToDos()
 }
 
 //Removes to-do item from to-do list
@@ -199,6 +200,7 @@ function removeToDo(event) {
     let specificListItem = $(event.target).parent();
     specificListItem.remove();
 
+    saveToDos()
 }
 
 //Save to-do list to Local Storage
@@ -390,7 +392,6 @@ displaySavedInformation();
 $("#to-do-add-button").click(addToDo);
 //Using .on("click") for event handler for dynamically added button
 $("#to-do-list").on("click", ".remove-to-do-button", removeToDo);
-$('#to-do-save-button').click(saveToDos);
 $('#to-dos').click(displaySavedToDos)
 $("#save-weekly").click(saveWeekly);
 $('#clear-weekly-confirm').click(clearWeekly);
